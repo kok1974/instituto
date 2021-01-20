@@ -25,6 +25,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('centros', CentroController::class);
+Route::get('centrosAPIRM', [App\Http\Controllers\HomeController::class, 'indexAPIRM']);
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
