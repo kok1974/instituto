@@ -41,4 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Determina si el usuario puede crear centros.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
+     */
+    public function isAdministrator()
+    {
+        return $this->id == 1;
+    }
+
 }
