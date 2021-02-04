@@ -15,4 +15,12 @@ class Nivel extends Model
         'nombre',
         'nivelsuperior'
     ];
+
+    /**
+     * Devuelve los grupos de un nivel determinado.
+     */
+    public function grupos()
+    {
+        return $this->hasMany(Grupo::class, 'nivel');
+    }
 }

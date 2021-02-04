@@ -17,4 +17,12 @@ class Centro extends Model
         'coordinador',
         'verificado'
     ];
+
+    /**
+     * Devuelve el coordinador del centro.
+     */
+    public function coordinadorCentro()
+    {
+        return $this->belongsTo(User::class, 'coordinador');
+    }
 }

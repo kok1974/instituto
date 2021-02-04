@@ -45,4 +45,12 @@ class User extends Authenticatable
     public function isAdministrator() {
         return $this->id == 1;
     }
+
+    /**
+     * Devolver el centro que coordina.
+     */
+    public function centroCoordinado()
+    {
+        return $this->hasOne(Centro::class, 'coordinador');
+    }
 }

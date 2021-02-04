@@ -19,4 +19,12 @@ class Grupo extends Model
         'verificado',
         'creador'
     ];
+
+    /**
+     * Devuelve el nivel de un grupo.
+     */
+    public function nivelEstudios()
+    {
+        return $this->belongsTo(Nivel::class, 'nivel');
+    }
 }

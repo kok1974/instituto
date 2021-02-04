@@ -17,7 +17,9 @@ class CentroResource extends JsonResource
         // return parent::toArray($request);
         return [
             'id' => $this->id,
+            'codigo' => $this->codigo,
             'nombre' => $this->nombre,
+            'coordinador' => $this->coordinadorCentro,
         ];
     }
 }
