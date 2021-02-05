@@ -53,4 +53,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(Centro::class, 'coordinador');
     }
+
+     /**
+     * Los grupos en los que está matriculado un determinado alumno.
+     */
+    public function grupos()
+    {
+        return $this->belongsToMany(Grupo::class, 'matriculas', 'alumno', 'grupo');
+    }
 }
