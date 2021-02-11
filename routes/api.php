@@ -59,6 +59,9 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         return new UserResource($request->user());
     });
 
+    Route::post('/avatar', [\App\Http\Controllers\API\AvatarController::class, 'store']);
+    Route::get('/avatar', [\App\Http\Controllers\API\AvatarController::class, 'getAvatar']);
+
     Route::apiResource('centros', CentroController::class);
 
     Route::get('miCentro', function (Request $request) {
