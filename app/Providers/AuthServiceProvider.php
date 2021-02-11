@@ -17,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         Centro::class => CentroPolicy::class,
         Materiamatriculada::class => MateriamatriculadaPolicy::class,
+        Nota::class => NotaPolicy::class,
     ];
 
     /**

@@ -9,10 +9,10 @@ use Psr\Http\Message\ServerRequestInterface;
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config;
 
-use App\Http\Controllers\API\PeriodoclaseController;
+
 use App\Models\Peridoclase;
 use App\Http\Controllers\API\CentroController;
-
+use App\Http\Controllers\API\PeriodoclaseController;
 use App\Http\Controllers\API\PeriodolectivoController;
 use App\Http\Controllers\API\AnyoescolarController;
 use App\Http\Controllers\API\MateriamatriculadaController;
@@ -20,8 +20,10 @@ use App\Http\Controllers\API\NivelController;
 use App\Http\Controllers\API\MateriaController;
 use App\Http\Controllers\API\GrupoController;
 use App\Http\Controllers\API\MatriculaController;
+use App\Http\Controllers\API\NotaController;
 
 use App\Http\Resources\CentroResource;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +67,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         return new CentroResource($request->user()->centroCoordinado);
     });
 
+    Route::get('/notas/media/{materia_id}', [NotaController::class, 'notaMedia']);
+
     Route::apiResource('periodoslectivos', PeriodolectivoController::class)->parameters(['periodoslectivos' => 'periodolectivo']);
     Route::apiResource('anyosescolares', AnyoescolarController::class)->parameters(['anyosescolares' => 'anyoescolar']);
     Route::apiResource('periodosclases', PeriodoclaseController::class)->parameters(['periodosclases' => 'periodoclase']);
@@ -75,6 +79,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('niveles', NivelController::class)->parameters(['niveles' => 'nivel']); /* Debido a como trabaja laravel, el parámetro que usamos cuando por ejemplo queremos sacar un nivel
     en concreto (Ej: http://instituto.test/api/niveles/1), nos lo coge como "nivele" (laravel interpreta que el singular de niveles es nivele). Si no le indicamos a laravel que el singular de
     niveles es nivel, nos hará la consulta pero nos devolverá todo a null */
+    Route::apiResource('nota', NotaController::class);
+
 });
 
 Route::get('centrosAPIRM', [CentroController::class, 'indexAPIRM']);
