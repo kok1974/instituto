@@ -26,13 +26,7 @@ class ExamenTest extends TestCase
         dump('1.- Probando el CRUD');
         dump('====================');
 
-        dump('1.1.- GET /api/cursos');
-        $response = $this->get('/api/cursos');
-        $response->assertStatus(200)
-            ->assertJsonCount(3)
-            ->assertJsonStructure(['data' => [['shortname', 'fullname', 'summary']]]);
-
-        dump('1.2.- POST /api/cursos');
+        dump('1.1.- POST /api/cursos');
         $response = $this->postJson('/api/cursos',[
             'shortname' => 'mi curso',
             'fullname' => 'El curso del examen'
@@ -42,6 +36,12 @@ class ExamenTest extends TestCase
             ->assertJsonCount(1)
             ->assertJsonPath('data.shortname', 'mi curso')
             ->assertJsonPath('data.fullname', 'El curso del examen');
+
+        dump('1.2.- GET /api/cursos');
+        $response = $this->get('/api/cursos');
+        $response->assertStatus(200)
+            ->assertJsonStructure(['data' => [['shortname', 'fullname', 'summary']]]);
+
 
         dump('1.3.- GET /api/cursos/' . $nuevoCurso);
         $response = $this->get('/api/cursos/' . $nuevoCurso);
@@ -137,7 +137,7 @@ class ExamenTest extends TestCase
 
     public function test_ejercicio7()
     {
-        dump('7.- Factory del modelo Curso');
+        dump('7.- Acceso a la API del Aula Virtual');
         dump('============================');
 
         $response = $this->get('/api/cursos/aulavirtual');
