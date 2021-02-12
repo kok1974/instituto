@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Grupo;
 use App\Models\Matricula;
+use App\Models\Curso;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,13 +20,15 @@ class DatabaseSeeder extends Seeder
     	User::truncate();
     	Grupo::truncate();
     	Matricula::truncate();
-        User::factory(10)->create();
         Grupo::factory(20)->create();
         Matricula::factory(15)->create();
 
-        $user = User::factory()
-            ->has(Grupo::factory()->count(3))
-            ->create();
+        $user = User::create([
+            'name' => 'Alberto Sierra',
+            'email' => 'alberto.sierra@murciaeduca.es',
+            'password' => bcrypt('password'),
+            'usuario_av' => 12585,
+        ])->cursos()->attach(\Illuminate\Support\Arr::pluck(Curso::factory()->count(3)->create(), 'id'));
     }
 
 }
